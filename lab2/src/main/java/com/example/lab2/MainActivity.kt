@@ -3,13 +3,12 @@ package com.example.lab2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 
-const val EXTRA_MESSAGE = "com.example.lab2.ContentListActivity"
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivityWithLog() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
         val intent = Intent(this, ContentListActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, login.text)
+            putExtra(Globals.EXTRA_MESSAGE, login.text)
         }
         startActivity(intent)
     }

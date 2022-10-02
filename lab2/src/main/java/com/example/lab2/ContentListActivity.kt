@@ -2,17 +2,17 @@ package com.example.lab2
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AbsListView.MultiChoiceModeListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.contains
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ContentListActivity : AppCompatActivity(),MultiChoiceModeListener {
+class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
     private lateinit var contentListModal : ArrayAdapter<String>
     private lateinit var contentListRegular : ArrayAdapter<String>
     private lateinit var btnAction : FloatingActionButton
@@ -86,6 +86,10 @@ class ContentListActivity : AppCompatActivity(),MultiChoiceModeListener {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val arguments = intent.extras
+        if (arguments != null)
+            Log.i("App Logger", "Login: "+arguments.get(Globals.EXTRA_MESSAGE).toString())
+
         setContentView(R.layout.activity_content_list)
 
         listView = findViewById(R.id.contentListView)
