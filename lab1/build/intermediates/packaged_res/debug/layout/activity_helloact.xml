@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Hello!"
+        android:textColor="#3F51B5"
+        android:textSize="128px"
+        app:autoSizeMinTextSize="24px" />
+
+    <Button
+
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="380px"
+        android:background="@color/teal_700"
+        android:backgroundTint="#3F51B5"
+        android:onClick="omClick"
+        android:text="Move"
+        android:textColor="@color/purple_200"
+        android:translationX="350px"
+        android:translationY="-40dp"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="100px"
+        android:background="@color/teal_700"
+        android:backgroundTint="#3F51B5"
+        android:onClick="omClick"
+        android:text="Press"
+        android:textColor="@color/purple_200"
+        android:translationY="-40dp"
+        tools:ignore="TextContrastCheck" />/>
+
+</FrameLayout>
