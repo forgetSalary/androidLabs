@@ -6,45 +6,66 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml
+8-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="32" />
-9-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml
+9-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml
 10
 11    <application
-11-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:5:5-23:19
+11-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:5:5-23:19
 12        android:allowBackup="true"
-12-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:6:9-35
+12-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.5.0] /home/mike-lane/.gradle/caches/transforms-3/4cb2d3ae910a25e4d3b75b6b0d8d1b11/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+13-->[androidx.core:core:1.8.0] /home/mike-lane/.gradle/caches/transforms-3/065dfa018132f0a621878cd66243e674/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
 14        android:debuggable="true"
 15        android:icon="@mipmap/ic_launcher"
-15-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:7:9-43
+15-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:7:9-43
 16        android:label="@string/app_name"
-16-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:8:9-41
+16-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:8:9-41
 17        android:roundIcon="@mipmap/ic_launcher_round"
-17-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:9:9-54
+17-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:9:9-54
 18        android:supportsRtl="true"
-18-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:10:9-35
-19        android:testOnly="true"
-20        android:theme="@style/Theme.MyFirstApplication" >
-20-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:11:9-56
-21        <activity
-21-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:13:9-21:20
-22            android:name="com.example.myfirstapplication.HelloActivity"
-22-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:13:19-48
-23            android:exported="true" >
-23-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:14:13-36
-24            <intent-filter>
-24-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:16:13-19:29
-25                <action android:name="android.intent.action.MAIN" />
-25-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:17:17-68
-25-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:17:25-66
-26
-27                <category android:name="android.intent.category.LAUNCHER" />
-27-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:18:17-76
-27-->/home/mike-lane/AndroidStudioProjects/AndroidLab/AndroidLabs/lab1/src/main/AndroidManifest.xml:18:27-74
-28            </intent-filter>
-29        </activity>
-30    </application>
-31
-32</manifest>
+18-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:10:9-35
+19        android:theme="@style/Theme.MyFirstApplication" >
+19-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:11:9-56
+20        <activity
+20-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:13:9-21:20
+21            android:name="com.example.myfirstapplication.HelloActivity"
+21-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:13:19-48
+22            android:exported="true" >
+22-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:14:13-36
+23            <intent-filter>
+23-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:16:13-19:29
+24                <action android:name="android.intent.action.MAIN" />
+24-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:17:17-68
+24-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:17:25-66
+25
+26                <category android:name="android.intent.category.LAUNCHER" />
+26-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:18:17-76
+26-->/home/mike-lane/AndroidStudioProjects/androidLabs/lab1/src/main/AndroidManifest.xml:18:27-74
+27            </intent-filter>
+28        </activity>
+29
+30        <provider
+30-->[androidx.emoji2:emoji2:1.2.0] /home/mike-lane/.gradle/caches/transforms-3/4e331c747f82bfb46756f96d7fe9a59c/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+31            android:name="androidx.startup.InitializationProvider"
+31-->[androidx.emoji2:emoji2:1.2.0] /home/mike-lane/.gradle/caches/transforms-3/4e331c747f82bfb46756f96d7fe9a59c/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+32            android:authorities="com.example.myfirstapplication.androidx-startup"
+32-->[androidx.emoji2:emoji2:1.2.0] /home/mike-lane/.gradle/caches/transforms-3/4e331c747f82bfb46756f96d7fe9a59c/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+33            android:exported="false" >
+33-->[androidx.emoji2:emoji2:1.2.0] /home/mike-lane/.gradle/caches/transforms-3/4e331c747f82bfb46756f96d7fe9a59c/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+34            <meta-data
+34-->[androidx.emoji2:emoji2:1.2.0] /home/mike-lane/.gradle/caches/transforms-3/4e331c747f82bfb46756f96d7fe9a59c/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+35                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+35-->[androidx.emoji2:emoji2:1.2.0] /home/mike-lane/.gradle/caches/transforms-3/4e331c747f82bfb46756f96d7fe9a59c/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+36                android:value="androidx.startup" />
+36-->[androidx.emoji2:emoji2:1.2.0] /home/mike-lane/.gradle/caches/transforms-3/4e331c747f82bfb46756f96d7fe9a59c/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+37            <meta-data
+37-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/mike-lane/.gradle/caches/transforms-3/35943563f449e64621f791c783419b38/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+38                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+38-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/mike-lane/.gradle/caches/transforms-3/35943563f449e64621f791c783419b38/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+39                android:value="androidx.startup" />
+39-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/mike-lane/.gradle/caches/transforms-3/35943563f449e64621f791c783419b38/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+40        </provider>
+41    </application>
+42
+43</manifest>

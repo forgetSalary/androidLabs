@@ -32,8 +32,16 @@
         "source": "com.example.lab2-main-31:/drawable/ic_launcher_background.xml"
     },
     {
+        "merged": "com.example.lab2-merged_res-29:/layout_activity_content_list.xml.flat",
+        "source": "com.example.lab2-main-31:/layout/activity_content_list.xml"
+    },
+    {
         "merged": "com.example.lab2-merged_res-29:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "com.example.lab2-main-31:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.lab2-merged_res-29:/layout_activity_main.xml.flat",
+        "source": "com.example.lab2-main-31:/layout/activity_main.xml"
     },
     {
         "merged": "com.example.lab2-merged_res-29:/mipmap-mdpi_ic_launcher_round.webp.flat",
