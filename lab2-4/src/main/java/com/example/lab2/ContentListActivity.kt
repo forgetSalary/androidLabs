@@ -16,6 +16,7 @@ import com.google.gson.Gson
 
 
 class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
+    private var userName = String()
     private lateinit var contentListModal : ArrayAdapter<String>
     private lateinit var contentListRegular : ArrayAdapter<String>
     private lateinit var btnAction : FloatingActionButton
@@ -23,11 +24,13 @@ class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
     private lateinit var listView : ListView
     private var contentListData = ArrayList<String>()
     private var counter = 0
+    private var isContentUpdated = false
 
     private fun btnActionAddOnClick(){
         contentListData.add("Element$counter")
         contentListRegular.notifyDataSetChanged()
         counter++
+        isContentUpdated = true
     }
 
     private fun btnActionRemoveOnClick(listView : ListView){
@@ -44,6 +47,7 @@ class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
         contentListData += copyOf
         contentListModal.notifyDataSetChanged()
 
+        isContentUpdated = true
         selectedItems = Array(contentListData.size) { false }
     }
 
@@ -89,10 +93,10 @@ class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
         //selectedItems[position] = checked
     }
 
-    private fun logExtras(){
-        val arguments = intent.extras
-        if (arguments != null)
-            Log.i("App Logger", "Login: "+arguments.get(Globals.EXTRA_MESSAGE).toString())
+    private fun readArguments(){
+        val arguments = intent.extras ?: return
+        userName = arguments.get(Globals.EXTRA_MESSAGE_ON_CREATE_MAIN_ACT).toString()
+        Log.i("App Logger", "Login: $userName")
     }
 
     private fun initComponents(){
@@ -122,10 +126,12 @@ class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
         listView.setMultiChoiceModeListener(this)
     }
 
+    private val contentPreferenceKey get() = "content_of_$userName"
+
     private fun readContentFromPreferences(){
         val sharedPrefs = this.getPreferences(Context.MODE_PRIVATE)
         val gson = Gson()
-        val jsonText = sharedPrefs.getString("content",null) ?: return
+        val jsonText = sharedPrefs.getString(contentPreferenceKey,null) ?: return
 
         contentListData = gson.fromJson(jsonText,contentListData.javaClass)
     }
@@ -133,7 +139,7 @@ class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content_list)
-        logExtras()
+        readArguments()
         readContentFromPreferences()
         initComponents()
 
@@ -163,13 +169,21 @@ class ContentListActivity : AppCompatActivityWithLog(),MultiChoiceModeListener {
     }
 
     private fun writeContentToPreferences(){
-        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
-        with(sharedPref.edit()){
-            val gson = Gson()
-            val jsonText = gson.toJson(contentListData)
-            putString("content",jsonText)
-            apply()
+        if (isContentUpdated) {
+            val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+            with(sharedPref.edit()){
+                val gson = Gson()
+                val jsonText = gson.toJson(contentListData)
+                putString(contentPreferenceKey,jsonText)
+                apply()
+            }
+            isContentUpdated = false
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        writeContentToPreferences()
     }
 
     override fun onDestroy() {

@@ -1,15 +1,10 @@
 package com.example.lab2
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.google.gson.Gson
 
 class LoginActivity : AppCompatActivityWithLog() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +39,9 @@ class LoginActivity : AppCompatActivityWithLog() {
             }
 
             // Start ContentListActivity
-            val intent = Intent(this, ContentListActivity::class.java).apply {}
+            val intent = Intent(this, ContentListActivity::class.java).apply {
+                putExtra(Globals.EXTRA_MESSAGE_ON_CREATE_MAIN_ACT, loginStr)
+            }
             startActivity(intent)
         }
     }

@@ -11,15 +11,17 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivityWithLog() {
     private fun isLoggedIn() : Boolean{
-        val sharedPref = this.getSharedPreferences(Globals.APP_SETTINGS_PREFERENCE_KEY,0)
-        if (!sharedPref.contains("is_logged_in")){
-            return false
-        }
-        return try {
-            sharedPref.getBoolean("is_logged_in",false)
-        }catch (ex : java.lang.ClassCastException){
-            false
-        }
+        return false
+        //TODO
+//        val sharedPref = this.getSharedPreferences(Globals.APP_SETTINGS_PREFERENCE_KEY,0)
+//        if (!sharedPref.contains("is_logged_in")){
+//            return false
+//        }
+//        return try {
+//            sharedPref.getBoolean("is_logged_in",false)
+//        }catch (ex : java.lang.ClassCastException){
+//            false
+//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
