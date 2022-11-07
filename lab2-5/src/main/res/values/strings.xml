@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="txt_login">login</string>
+    <string name="txt_password">password</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_action">add</string>
+    <string name="btn_remove">btnRemove</string>
+    <string name="btn_logout">Logout</string>
+    <string name="btn_signIn">Sign in</string>
+    <string name="txt_login_or_password_invalid">Enter login and password</string>
+    <string name="txt_not_existing_user">User does not exist. Sign in first.</string>
+    <string name="txt_user_already_exists">That username is taken. Try another</string>
+    <string name="txt_passwords_do_not_match">Passwords do not match</string>
+    <string name="txt_invalid_password">Invalid password</string>
+    <string name="txt_authorisation_success">You are welcome!</string>
+    <string name="txt_actions_setting">Settings</string>
+    <string name="txt_actions_remove_user">Remove user</string>
+    <string name="txt_continue_remove_user">Your data will be lost. Continue?</string>
+    <string name="txt_yes">Yes</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="title_activity_change_password">ChangePasswordActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="txt_old_password">Old password</string>
+    <string name="txt_new_password">New password</string>
+    <string name="txt_save">Save</string>
+    <string name="txt_repeate_password">Repeate password</string>
+</resources>

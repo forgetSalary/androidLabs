@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_logout"
+        app:showAsAction="never"
+        android:title="@string/btn_logout">
+    </item>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/txt_actions_setting"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/action_remove_user"
+        app:showAsAction="never"
+        android:title="@string/txt_actions_remove_user">
+    </item>
+</menu>
