@@ -37,6 +37,7 @@ open class AppCompatActivityEx : AppCompatActivity(){
 
     override fun onDestroy() {
         super.onDestroy()
+        dbHelper.close()
         Log.i("App Logger","[${javaClass.name}]: Destroyed")
     }
 

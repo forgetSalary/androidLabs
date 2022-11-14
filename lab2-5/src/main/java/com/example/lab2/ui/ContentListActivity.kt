@@ -13,6 +13,7 @@ import android.widget.ListView
 import androidx.core.util.contains
 import com.example.lab2.common.Globals
 import com.example.lab2.R
+import com.example.lab2.common.DatabaseHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 
@@ -123,20 +124,26 @@ class ContentListActivity : AppCompatActivityEx(),MultiChoiceModeListener {
 
     private fun readContentList(){
         val gson = Gson()
-        val jsonText = dbHelper.getUserContentListText(Globals.instance.loggedInUserName) ?: return
-        if (jsonText.isEmpty()){
-            return
-        }
-        contentListData = gson.fromJson(jsonText,contentListData.javaClass)
+        dbHelper.getUserContentListTextAsync(Globals.instance.loggedInUserName,
+        object : DatabaseHelper.AsyncRequestHandler(){
+            override fun handle(result: Any?) {
+                val jsonText = result as String? ?: return
+                if (jsonText.isEmpty()){
+                    return
+                }
+                contentListData = gson.fromJson(jsonText,contentListData.javaClass)
+            }
+        }).join()
+
     }
 
     private fun writeContentList(){
-        if (isContentUpdated) {
+        //if (isContentUpdated) {
             val gson = Gson()
             val jsonText = gson.toJson(contentListData)
-            dbHelper.setUserContentList(Globals.instance.loggedInUserName,jsonText)
+            dbHelper.setUserContentListAsync(Globals.instance.loggedInUserName,jsonText)
             isContentUpdated = false
-        }
+        //}
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -146,6 +153,7 @@ class ContentListActivity : AppCompatActivityEx(),MultiChoiceModeListener {
         initComponents()
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true

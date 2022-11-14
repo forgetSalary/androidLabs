@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.hardware.SensorAdditionalInfo
+import java.util.Objects
 
 class DatabaseHelper(context: Context?) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -15,6 +16,10 @@ class DatabaseHelper(context: Context?) :
                         "${DBContract.UserEntry.COLUMN_NAME_PASS} BINARY(${UserName.Encoded.PASS_HASH_LEN}), " +
                         "${DBContract.UserEntry.COLUMN_CONTENT_LIST} TEXT)")
         db.execSQL(createUserTable)
+    }
+
+    abstract class AsyncRequestHandler{
+        abstract fun handle(result:Any?)
     }
 
     fun dropDataBase(db : SQLiteDatabase = writableDatabase){
@@ -36,6 +41,10 @@ class DatabaseHelper(context: Context?) :
         db.close()
     }
 
+    fun addUserAsync(userName: UserName.Encoded, contentListText: String = ""){
+        Thread { addUser(userName, contentListText) }.start()
+    }
+
     fun setUserContentList(userName: String,contentListText: String){
         val selectQuery =
                     "update ${DBContract.UserEntry.TABLE_NAME} " +
@@ -43,6 +52,14 @@ class DatabaseHelper(context: Context?) :
                             "where ${DBContract.UserEntry.COLUMN_NAME_LOGIN}='$userName'"
         val db = this.writableDatabase
         db.execSQL(selectQuery)
+        db.close()
+    }
+
+    fun setUserContentListAsync(userName: String,contentListText: String){
+        Thread {
+            Thread.sleep(3000)
+            setUserContentList(userName, contentListText)
+        }.start()
     }
 
     fun getUserContentListText(userName: String) : String?{
@@ -56,7 +73,14 @@ class DatabaseHelper(context: Context?) :
             contentListText = cursor.getString(DBContract.UserColumns.CONTENT_LIST.ordinal)
         }
         cursor.close();
+        db.close()
         return contentListText
+    }
+
+    fun getUserContentListTextAsync(userName: String, handler: AsyncRequestHandler) : Thread{
+        val t = Thread { handler.handle(getUserContentListText(userName)) }
+        t.start()
+        return t
     }
 
     fun changeUserPasswordHash(userName: UserName.Encoded){
@@ -68,6 +92,10 @@ class DatabaseHelper(context: Context?) :
             setUserContentList(userName.login,contentList)
         }
         db.close()
+    }
+
+    fun changeUserPasswordHashAsync(userName: UserName.Encoded){
+        Thread { changeUserPasswordHash(userName) }.start()
     }
 
     fun getAllUsers(): List<UserName.Encoded> {
@@ -104,7 +132,15 @@ class DatabaseHelper(context: Context?) :
             )
         }
         cursor.close();
+        db.close()
         return existingUserName
+    }
+
+    fun findUserWithUserNameAsync(userName: String, handler: AsyncRequestHandler){
+        Thread {
+            Thread.sleep(10000)
+            handler.handle(findUserWithUserName(userName))
+        }.start()
     }
 
     fun deleteAllUserRecords() {
@@ -116,7 +152,12 @@ class DatabaseHelper(context: Context?) :
         val db = this.writableDatabase
         db.execSQL(
             "delete from ${DBContract.UserEntry.TABLE_NAME} " +
-                "where ${DBContract.UserEntry.COLUMN_NAME_LOGIN}='$userName'");
+                "where ${DBContract.UserEntry.COLUMN_NAME_LOGIN}='$userName'")
+        db.close()
+    }
+
+    fun deleteUserWithUserNameAsync(userName: String){
+        Thread { deleteUserWithUserName(userName) }.start()
     }
 
     companion object {

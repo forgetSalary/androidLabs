@@ -9,6 +9,7 @@ import android.widget.EditText
 import com.example.lab2.common.Globals
 import com.example.lab2.common.UserName
 import com.example.lab2.R
+import com.example.lab2.common.DatabaseHelper
 
 
 class LoginActivity : AppCompatActivityEx(),OnClickListener {
@@ -46,35 +47,47 @@ class LoginActivity : AppCompatActivityEx(),OnClickListener {
             showToast(R.string.txt_login_or_password_invalid)
             return
         }
-        val existingUser = dbHelper.findUserWithUserName(user.login)
-        if (existingUser == null){
-            showToast(R.string.txt_not_existing_user)
-            return
-        }
-        val enteredUserEncoded = user.toEncoded()
 
-        if (!enteredUserEncoded.passHash.contentEquals(existingUser.passHash)){
-            showToast(R.string.txt_invalid_password)
-            return
-        }
-        showToast(R.string.txt_authorisation_success)
-        Globals.instance.loggedInUserName = user.login
-        startContentListActivity(user.login)
+        val login = findViewById<EditText>(R.id.editTextTextEmailAddress)
+
+        dbHelper.findUserWithUserNameAsync(user.login,object : DatabaseHelper.AsyncRequestHandler(){
+            override fun handle(result: Any?) {
+                val existingUser = result as UserName.Encoded?
+                if (existingUser == null){
+                    runOnUiThread{ showToast(R.string.txt_not_existing_user) }
+                    return
+                }
+                val enteredUserEncoded = user.toEncoded()
+
+                if (!enteredUserEncoded.passHash.contentEquals(existingUser.passHash)){
+                    runOnUiThread{ showToast(R.string.txt_invalid_password) }
+                    return
+                }
+                runOnUiThread{ showToast(R.string.txt_authorisation_success) }
+                Globals.instance.loggedInUserName = user.login
+                startContentListActivity(user.login)
+            }
+        })
+
     }
 
     private fun signInOnClick(){
         val userData = getUserDataEntered()
-        val existingUser = dbHelper.findUserWithUserName(userData.login)
-        if (existingUser != null){
-            showToast(R.string.txt_user_already_exists)
-            return
-        }
-        val userName = UserName.Raw(userData.login,userData.pass).toEncoded()
-        dbHelper.addUser(userName)
-        showToast(R.string.txt_authorisation_success)
-        startContentListActivity(userData.login)
-    }
+        dbHelper.findUserWithUserNameAsync(userData.login,object : DatabaseHelper.AsyncRequestHandler(){
+            override fun handle(result: Any?) {
+                val existingUser = result as UserName.Encoded?
+                if (existingUser != null){
+                    runOnUiThread{ showToast(R.string.txt_user_already_exists)}
+                    return
+                }
+                val userName = UserName.Raw(userData.login,userData.pass).toEncoded()
+                dbHelper.addUserAsync(userName)
+                runOnUiThread{ showToast(R.string.txt_authorisation_success)}
+                startContentListActivity(userData.login)
+            }
+        })
 
+    }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
